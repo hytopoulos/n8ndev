@@ -19,4 +19,4 @@ jobs:
         run: chmod +x ./main.sh
 
       - name: Run script
-        run: ./main.sh | curl -X POST ${{ inputs.resumeUrl }} --data @-
+echo "{ "result": "$(./main.sh | sed 's/"/\"/g')" }" \n  | curl -X POST ${{ inputs.resumeUrl }} \n         -H "Content-Type: application/json" \n         --data @-
