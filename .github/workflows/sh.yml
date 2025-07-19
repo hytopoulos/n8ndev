@@ -19,7 +19,4 @@ jobs:
         run: chmod +x ./main.sh
 
       - name: Run script
-        run: ./main.sh
-
-      - name: Call n8n resume webhook
-        run: curl ${{ inputs.resumeUrl }}
+        run: ./main.sh | curl -X POST ${{ inputs.resumeUrl }} --data @-
