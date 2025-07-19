@@ -1,3 +1,4 @@
+
 name: Run Shell Script
 
 on:
@@ -19,7 +20,4 @@ jobs:
         run: chmod +x ./main.sh
 
       - name: Run script
-        run: |
-          result=$(./main.sh | sed 's/"/\"/g')
-          echo "{"result": "$result"}" | curl -X POST "${{ inputs.resumeUrl }}" -H "Content-Type: application/json" --data @-
-
+        run: ./main.sh | curl -X POST ${{ inputs.resumeUrl }} --data @-
